@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TypeService } from "../utils";
+import type { TypeService } from "../utils";
 import { useParams } from "react-router-dom";
 import Review from "../components/Review";
 
@@ -15,7 +15,7 @@ export default function Service() {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch(`/api/services/${serviceId}`, {
+        const data = await fetch(`https://review-be.onrender.com/api/services/${serviceId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -67,6 +67,7 @@ export default function Service() {
                                 <div className="flex items-center space-x-2">
                                   <p
                                     className={
+                                      // biome-ignore lint/style/useTemplate: <explanation>
                                       "text-sm " +
                                       (selectedService.availability[0]
                                         .dayOfWeek[1]
@@ -79,6 +80,7 @@ export default function Service() {
 
                                   <p
                                     className={
+                                      // biome-ignore lint/style/useTemplate: <explanation>
                                       "text-sm " +
                                       (selectedService.availability[0]
                                         .dayOfWeek[2]
@@ -91,6 +93,7 @@ export default function Service() {
 
                                   <p
                                     className={
+                                      // biome-ignore lint/style/useTemplate: <explanation>
                                       "text-sm " +
                                       (selectedService.availability[0]
                                         .dayOfWeek[3]
@@ -103,6 +106,7 @@ export default function Service() {
 
                                   <p
                                     className={
+                                      // biome-ignore lint/style/useTemplate: <explanation>
                                       "text-sm " +
                                       (selectedService.availability[0]
                                         .dayOfWeek[4]
@@ -115,6 +119,7 @@ export default function Service() {
 
                                   <p
                                     className={
+                                      // biome-ignore lint/style/useTemplate: <explanation>
                                       "text-sm " +
                                       (selectedService.availability[0]
                                         .dayOfWeek[5]
@@ -127,6 +132,7 @@ export default function Service() {
 
                                   <p
                                     className={
+                                      // biome-ignore lint/style/useTemplate: <explanation>
                                       "text-sm " +
                                       (selectedService.availability[0]
                                         .dayOfWeek[6]
@@ -139,6 +145,7 @@ export default function Service() {
 
                                   <p
                                     className={
+                                      // biome-ignore lint/style/useTemplate: <explanation>
                                       "text-sm " +
                                       (selectedService.availability[0]
                                         .dayOfWeek[0]
@@ -185,6 +192,7 @@ export default function Service() {
           <div className="py-16">
             <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
               <div className="grid gap-12 lg:grid-cols-1">
+                {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
                 <div className="p-1 rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50"></div>
                 <Review />
               </div>

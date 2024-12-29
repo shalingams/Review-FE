@@ -10,8 +10,8 @@ import {
   deleteUserFailure,
   signOut,
 } from '../redux/user/userSlice';
-import { RootState } from '../redux/store';
-import { CurrentUser } from '../utils'; // adjust the import path as needed
+import type { RootState } from '../redux/store';
+import type { CurrentUser } from '../utils'; // adjust the import path as needed
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export default function Profile() {
     try {
       if (!currentUser?._id) return;
       dispatch(updateUserStart());
-      const res = await fetch(`/api/user/update/${currentUser!._id}`, {
+      const res = await fetch(`https://review-be.onrender.com/api/user/update/${currentUser!._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default function Profile() {
     try {
       if (!currentUser?._id) return;
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`https://review-be.onrender.com/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -72,7 +72,7 @@ export default function Profile() {
 
   const handleSignOut = async () => {
     try {
-      await fetch('/api/auth/signout');
+      await fetch('https://review-be.onrender.com/api/auth/signout');
       dispatch(signOut())
     } catch (error) {
       console.log(error);
@@ -106,17 +106,20 @@ export default function Profile() {
           className='bg-slate-100 rounded-lg p-3'
           onChange={handleChange}
         />
+        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
         <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
           {loading ? 'Loading...' : 'Update'}
         </button>
       </form>
       <div className='flex justify-between mt-5'>
+        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
         <span
           onClick={handleDeleteAccount}
           className='text-red-700 cursor-pointer'
         >
           Delete Account
         </span>
+        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
         <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
           Sign out
         </span>

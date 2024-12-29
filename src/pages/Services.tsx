@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TypeService } from "../utils";
+import type { TypeService } from "../utils";
 
 export default function Services() {
   const [services, setServices] = useState<TypeService[]>([]);
@@ -9,7 +9,7 @@ export default function Services() {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch("/api/services", {
+        const data = await fetch("https://review-be.onrender.com/api/services", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export default function Services() {
             {services.map((service) => (
               <div key={service._id} className="w-full md:w-1/2 xl:w-1/3 px-4">
                 <div className="bg-white rounded-lg overflow-hidden mb-10">
-                  <img src={service.picture} alt="image" className="w-full" />
+                  <img src={service.picture} alt="profile" className="w-full" />
                   <div className="p-8 sm:p-9 md:p-7 xl:p-9">
                     <h3>
                       <a
@@ -70,7 +70,9 @@ export default function Services() {
                         viewBox="0 0 24 24"
                         data-testid="LocalOfferOutlinedIcon"
                       >
+                        {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
                         <path d="m21.41 11.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42M13 20.01 4 11V4h7v-.01l9 9z"></path>
+                        {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
                         <circle cx="6.5" cy="6.5" r="1.5"></circle>
                       </svg>
                       <span className="ml-2">
@@ -86,6 +88,7 @@ export default function Services() {
                       </a>
                     </div>
                     <div className="flex items-center justify-center">
+                      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
                       <button className="flex gap-2 items-center p-2 justify-center w-full m-5 bg-[#ad8a1f] rounded-md hover:border-primary hover:bg-primary hover:text-black transition hover:bg-[#ddc888]">
                         <span className="flex">
                           <img src="/bookmark-white.png" alt="" />

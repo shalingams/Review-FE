@@ -14,6 +14,7 @@ import type { RootState } from '../redux/store';
 import type { CurrentUser } from '../utils'; // adjust the import path as needed
 
 export default function Profile() {
+  const baseUrl = process.env.BACKED_END_URL
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
@@ -33,7 +34,7 @@ export default function Profile() {
     try {
       if (!currentUser?._id) return;
       dispatch(updateUserStart());
-      const res = await fetch(`https://review-be.onrender.com/api/user/update/${currentUser!._id}`, {
+      const res = await fetch(`${baseUrl}user/update/${currentUser!._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ export default function Profile() {
     try {
       if (!currentUser?._id) return;
       dispatch(deleteUserStart());
-      const res = await fetch(`https://review-be.onrender.com/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${baseUrl}user/delete/${currentUser._id}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -72,7 +73,7 @@ export default function Profile() {
 
   const handleSignOut = async () => {
     try {
-      await fetch('https://review-be.onrender.com/api/auth/signout');
+      await fetch(`${baseUrl}auth/signout`);
       dispatch(signOut())
     } catch (error) {
       console.log(error);

@@ -11,11 +11,12 @@ export default function Service() {
   const [selectedService, setSelectedService] = useState<TypeService | null>(
     null
   );
+  const baseUrl = process.env.BACKED_END_URL
 
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch(`https://review-be.onrender.com/api/services/${serviceId}`, {
+        const data = await fetch(`${baseUrl}services/${serviceId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -31,7 +32,7 @@ export default function Service() {
       setError(true);
       console.log(error);
     }
-  }, [serviceId]);
+  }, [serviceId, baseUrl]);
 
   return (
     <div>

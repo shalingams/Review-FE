@@ -9,13 +9,14 @@ export default function SignUp() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  const baseUrl = process.env.BACKED_END_URL;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch('https://review-be.onrender.com/api/auth/signup', {
+      const res = await fetch(`${baseUrl}auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

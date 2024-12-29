@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://review-be.onrender.com',
-        secure: true,
+        secure: false,
       },
     },
   },

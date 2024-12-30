@@ -11,9 +11,7 @@ export default function Service() {
   const [selectedService, setSelectedService] = useState<TypeService | null>(
     null
   );
-  const [reviews, setReviews] = useState<IReview[] | null>(
-    null
-  );
+  const [reviews, setReviews] = useState<IReview[]>([]);
 
   const baseUrl = process.env.BACKED_END_URL
 

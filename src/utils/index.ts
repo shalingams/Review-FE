@@ -46,3 +46,14 @@ export interface CurrentUser {
   updatedAt: string
   __v: number
 }
+
+export interface IReview {
+  _id: string
+  userId: string
+  serviceId: string
+  rating: number
+  review: string
+  createdAt: string
+  updatedAt: string
+  __v: number
+}

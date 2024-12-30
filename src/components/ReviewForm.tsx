@@ -1,4 +1,55 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../redux/store";
+import { useParams } from "react-router-dom";
+
 export default function ReviewForm() {
+  const params = useParams();
+  const serviceId = params.id;
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
+
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const baseUrl = process.env.BACKED_END_URL;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
+    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+    formJson["userId"] = String(currentUser!._id);
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
+    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+    formJson["serviceId"] = String(serviceId!);
+
+    try {
+      setLoading(true);
+      setError(false);
+      const res = await fetch(`${baseUrl}reviews/store`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formJson),
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (data.success === false) {
+        setError(true);
+        return;
+      }
+      form.reset();
+    } catch (error) {
+      setLoading(false);
+      setError(true);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="grid p-10 bg-slate-200 rounded-2xl">
       <div className="w-full">
@@ -27,45 +78,97 @@ export default function ReviewForm() {
       </div>
       <div className="w-full text-black p-2">
         <p>
-          Your input is valuable in helping us better understand your needs and
-          tailor our service accordingly.
+          We greatly value your feedback as it helps us better understand your
+          needs and customize our service to suit you.
         </p>
       </div>
-      <div className="w-full flex gap-6 mb-10">
-        <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
-          <div className="text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
-            😭
+      {error && (
+        <p className="text-red-600">Something went wrong, Try again later!</p>
+      )}
+      <form onSubmit={(e) => handleSubmit(e)} method="post">
+        <div className="w-full flex gap-6 mb-10">
+          <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                id="1"
+                value={1}
+                className="hidden"
+              />
+              <div className="label-checked:text-5xl label-checked:opacity-100 opacity-40 text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
+                😭
+              </div>
+            </label>
+          </div>
+          <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                id="2"
+                value={2}
+                className="hidden"
+              />
+              <div className="label-checked:text-5xl label-checked:opacity-100 opacity-40 text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
+                😔
+              </div>
+            </label>
+          </div>
+          <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                id="3"
+                value={3}
+                className="hidden"
+              />
+              <div className="label-checked:text-5xl label-checked:opacity-100 opacity-40 text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
+                😐
+              </div>
+            </label>
+          </div>
+          <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                id="4"
+                value={4}
+                className="hidden"
+              />
+              <div className="label-checked:text-5xl label-checked:opacity-100 opacity-40 text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
+                😊
+              </div>
+            </label>
+          </div>
+          <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                id="5"
+                value={5}
+                className="hidden"
+              />
+              <div className="label-checked:text-5xl label-checked:opacity-100 opacity-40 text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
+                😍
+              </div>
+            </label>
           </div>
         </div>
-        <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
-          <div className="text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
-            😔
-          </div>
+        <div>
+          {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
+          <textarea name="review" id="" className="w-full h-40 p-2"></textarea>
         </div>
-        <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
-          <div className="text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
-            🙂
-          </div>
+        <div className="w-full flex justify-end ">
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button className="text-black px-4 py-2 rounded bg-[#ddc888] hover:bg-[#ad8a1f]">
+            {loading ? "Saving..." : "Submit"}
+          </button>
         </div>
-        <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
-          <div className="text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
-            😊
-          </div>
-        </div>
-        <div className="border-solid border-2 hover:border-gray-600 rounded-full p-2 hover:scale-150">
-          <div className="text-3xl cursor-pointer border-solid border-2 border-gray-200 rounded-full p-2 h-8 w-8 items-center justify-center flex">
-            😍
-          </div>
-        </div>
-      </div>
-      <div>
-        <textarea name="review" id="" className="w-full h-40 p-2"></textarea>
-      </div>
-      <div className="w-full flex justify-end ">
-        <button className="text-black px-4 py-2 rounded bg-[#ddc888] hover:bg-[#ad8a1f]">
-          Submit
-        </button>
-      </div>
+      </form>
     </div>
   );
 }

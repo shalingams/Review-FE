@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { TypeService } from "../utils";
+import type { IReview, TypeService } from "../utils";
 import { useParams } from "react-router-dom";
 import Review from "../components/Review";
 
@@ -11,6 +11,10 @@ export default function Service() {
   const [selectedService, setSelectedService] = useState<TypeService | null>(
     null
   );
+  const [reviews, setReviews] = useState<IReview[] | null>(
+    null
+  );
+
   const baseUrl = process.env.BACKED_END_URL
 
   useEffect(() => {
@@ -23,7 +27,11 @@ export default function Service() {
           },
         });
         const json = await data.json();
-        setSelectedService(json);
+
+        // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+        setSelectedService(json['service']);
+        // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+        setReviews(json['reviews']);
         return json;
       };
       fetchData();
@@ -195,7 +203,7 @@ export default function Service() {
               <div className="grid gap-12 lg:grid-cols-1">
                 {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
                 <div className="p-1 rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50"></div>
-                <Review />
+                {!loading && <Review reviews={reviews} />}
               </div>
             </div>
           </div>

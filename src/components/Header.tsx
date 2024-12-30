@@ -9,7 +9,7 @@ export default function Header() {
     
     <div className="border-b border-[#4646458a] ">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-6 text-[#ad8a1f]">
-        <h1 className="font-bold">Auth APP</h1>
+        <h1 className="font-bold">Venues & Experts</h1>
         <div>
           <ul className="flex gap-4">
           <li><Link to="/">Home</Link></li>

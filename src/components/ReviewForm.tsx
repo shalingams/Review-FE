@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import type { CurrentUser } from "../utils";
 
 export default function ReviewForm() {
   const params = useParams();
   const serviceId = params.id;
-  const currentUser = useSelector((state: RootState) => state.user.currentUser);
+  const currentUser = useSelector((state: RootState) => state.user.currentUser as unknown as CurrentUser);
+  const navigate = useNavigate();
 
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -43,6 +45,7 @@ export default function ReviewForm() {
         return;
       }
       form.reset();
+      navigate('/services');
     } catch (error) {
       setLoading(false);
       setError(true);

@@ -2,7 +2,6 @@ import type { IReview } from "../utils";
 
 export default function Progress({ reviews, totalReviews }: { reviews: IReview[] , totalReviews: number}) {
   const percentage = (reviews?.length / totalReviews) * 100 || 0;
-  console.log("###############",percentage);
   return (
     <div>
       <div className="mb-2 flex">

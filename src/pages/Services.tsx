@@ -63,7 +63,7 @@ export default function Services() {
                       />
                       <span className="ml-2">{service.category}</span>
                     </p>
-                    <p className="flex text-base text-body-color leading-relaxed mb-7 text-black">
+                    <p className="flex text-base text-body-color leading-relaxed text-black">
                       <svg
                         className="w-5 h-5 MuiSvgIcon-root MuiSvgIcon-fontSizeXl2 css-wyppz3"
                         focusable="false"

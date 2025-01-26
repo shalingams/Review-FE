@@ -9,6 +9,10 @@ export default {
   theme: {
     extend: {
       backgroundColor: ['label-checked'],
+      fontFamily: {
+        "mystery-quest": ['Mystery Quest', 'sans-serif'],
+        "overlock": ['Overlock', 'sans-serif']
+    }
     },
   },
   plugins: [

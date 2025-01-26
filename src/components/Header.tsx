@@ -11,7 +11,7 @@ export default function Header() {
         duration: 0.4,
         ease: "linear",
       }}
-      className="border-b border-[#4646458a]"
+      className="border-b border-[#4646458a] bg-red-500 m-h-screen"
     >
       <div className="fixed z-50 top-0 left-1/2 transform -translate-x-1/2 w-6/12 max-w-6xl justify-between mx-auto mt-3 text-[#ad8a1f] rounded-xl bg-[#38A3A5]">
         <Menu />

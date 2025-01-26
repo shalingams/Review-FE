@@ -3,11 +3,11 @@ import type { IReview, TypeService } from "../utils";
 import { useParams } from "react-router-dom";
 import Review from "../components/Review";
 
-export default function Service() {
+export default function Recipe() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const params = useParams();
-  const serviceId = params.id;
+  const recipeId = params.id; 
   const [selectedService, setSelectedService] = useState<TypeService | null>(
     null
   );
@@ -18,7 +18,7 @@ export default function Service() {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const data = await fetch(`${baseUrl}services/${serviceId}`, {
+        const data = await fetch(`${baseUrl}recipes/${recipeId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export default function Service() {
         const json = await data.json();
 
         // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-        setSelectedService(json['service']);
+        setSelectedService(json['recipes']);
         // biome-ignore lint/complexity/useLiteralKeys: <explanation>
         setReviews(json['reviews']);
         return json;
@@ -38,7 +38,7 @@ export default function Service() {
       setError(true);
       console.log(error);
     }
-  }, [serviceId, baseUrl]);
+  }, [recipeId, baseUrl]);
 
   return (
     <div>

@@ -16,9 +16,9 @@ export default {
       addVariant('label-checked', ({ modifySelectors, separator }) => {
           modifySelectors(
               ({ className }) => {
-                  const eClassName = e(`label-checked${separator}${className}`); // escape class
-                  const yourSelector = 'input[type="radio"]'; // your input selector. Could be any
-                  return `${yourSelector}:checked ~ .${eClassName}`; // ~ - CSS selector for siblings
+                  const eClassName = e(`label-checked${separator}${className}`);
+                  const yourSelector = 'input[type="radio"]';
+                  return `${yourSelector}:checked ~ .${eClassName}`;
               }
           )
       })

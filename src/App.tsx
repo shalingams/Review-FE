@@ -6,8 +6,8 @@ import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
 import Header from "./components/Header"
 import PrivateRoute from "./components/PrivateRoute"
-import Services from "./pages/Services"
-import Service from "./pages/Service"
+import Recipes from "./pages/Recipes"
+import Recipe from "./pages/Recipe"
 
 export default function App() {
   return (
@@ -16,8 +16,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/:id" element={<Service />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:id" element={<Recipe />} />
         <Route element={<PrivateRoute />} >
           <Route path="/profile" element={<Profile />} />
         </Route>

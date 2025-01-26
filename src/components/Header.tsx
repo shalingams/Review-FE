@@ -1,32 +1,22 @@
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import type { RootState } from '../redux/store';
+// import FallingImages from "./FallingImages";
+import Menu from "./Menu";
+import { motion } from "motion/react";
 
 export default function Header() {
-  const {currentUser} = useSelector((state: RootState) => state.user);
-  
   return (
-    
-    <div className="border-b border-[#4646458a] ">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-6 text-[#ad8a1f]">
-        <h1 className="font-bold">Venues & Experts</h1>
-        <div>
-          <ul className="flex gap-4">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/services">Services</Link></li>
-          <li><Link to="/about">About</Link></li>
-            {currentUser ? (
-              <li><Link to="/profile">Profile</Link></li>
-            ) : (
-              <>
-                <li><Link to="/sign-in">Sign In</Link></li>
-                <li><Link to="/sign-up">Sign Up</Link></li>
-              </>
-            )}
-
-          </ul>
-        </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.4,
+        ease: "linear",
+      }}
+      className="border-b border-[#4646458a]"
+    >
+      <div className="fixed z-50 top-0 left-1/2 transform -translate-x-1/2 w-6/12 max-w-6xl justify-between mx-auto mt-3 text-[#ad8a1f] rounded-xl bg-[#38A3A5]">
+        <Menu />
       </div>
-    </div>
-  )
+      {/* <FallingImages /> */}
+    </motion.div>
+  );
 }

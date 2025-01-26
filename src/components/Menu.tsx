@@ -6,10 +6,10 @@ export default function Menu() {
   const { currentUser } = useSelector((state: RootState) => state.user);
 
   return (
-    <div className="flex justify-between items-center mx-auto p-3">
+    <div className="flex justify-between items-center mx-auto px-6 py-3">
       <img src="/header.png" className="w-10 h-10" />
       <div>
-        <ul className="flex gap-4 text-[#C7F9CC]">
+        <ul className="flex gap-4 text-[#C7F9CC] text-xl">
           <li>
             <Link
               to="/"

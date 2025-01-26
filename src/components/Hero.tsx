@@ -3,7 +3,7 @@ import { Title } from "./Title";
 
 export default function Hero() {
   return (
-    <div className="z-50 w-screen h-screen items-center justify-center">
+    <div className="w-screen items-center justify-center">
       <div className="flex items-center justify-between flex-cols-3 gap-2 m-48">
         <motion.img       
         initial={{ x: -500, y: -500 }}

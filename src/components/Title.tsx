@@ -27,7 +27,7 @@ export function Title({ text }: { text: string }) {
           initial="initial"
           animate={isInView ? 'animate' : ''}
           custom={i}
-          className='text-xl text-center sm:text-4xl tracking-tighter md:text-6xl md:leading-[4rem] font-mystery-quest text-[#C7F9CC]'
+          className='text-7xl text-center sm:text-4xl tracking-tighter md:text-7xl md:leading-[4rem] font-mystery-quest text-[#C7F9CC]'
         >
           {current == ' ' ? <span>&nbsp;</span> : current}
         </motion.div>

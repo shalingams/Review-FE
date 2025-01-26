@@ -57,3 +57,9 @@ export interface IReview {
   updatedAt: string
   __v: number
 }
+
+export interface ICountry {
+  _id: string
+  name: string
+  flag: string
+}

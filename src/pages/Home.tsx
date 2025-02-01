@@ -1,11 +1,9 @@
-import Countries from "../components/Countries";
 import Hero from "../components/Hero";
 
 export default function Home() {
   return (
     <>
     <Hero />
-    <Countries /> 
   </>
   )
 }

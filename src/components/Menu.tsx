@@ -20,6 +20,14 @@ export default function Menu() {
           </li>
           <li>
             <Link
+              to="/countries"
+              className="hover:text-[#80ED99] hover:uppercase hover:text-bold hover:text-xl"
+            >
+              Countries
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/recipes"
               className="hover:text-[#80ED99] hover:uppercase hover:text-bold hover:text-xl"
             >

@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import Recipes from "./pages/Recipes";
 import Recipe from "./pages/Recipe";
+import Countries from "./pages/Countries";
+import Country from "./pages/Country";
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/countries" element={<Countries />} />
+        <Route path="/countries/:id" element={<Country />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipes/:id" element={<Recipe />} />
         <Route element={<PrivateRoute />}>

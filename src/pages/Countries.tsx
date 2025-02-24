@@ -45,7 +45,7 @@ export default function Countries() {
             <div className="flex w-full h-full items-center justify-around px-10 flex-wrap gap-5">
               {filteredCountries.map((country: ICountry) => (
                 <Link
-                  to={`${country._id}`}
+                  to={`${country.slug}`}
                   key={country._id}
                   className="relative flex min-w-[24rem] flex-col overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mb-3"
                 >
